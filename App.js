@@ -1,19 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
 
-export default function App() {
+import MapView, { Marker } from "react-native-maps";
+
+const App = () => {
+  const [region, setRegion] = useState({
+    latitude: 26.41187,
+    longitude: 80.38332,
+    latitudeDelta: 0.009,
+    longitudeDelta: 0.009
+  });
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <MapView
+      style={{ flex: 1 }}
+      region={region}
+      onRegionChangeComplete={region => setRegion(region)}
+    >
+      <Marker coordinate={{ latitude: 26.41187, longitude:  80.38332 }} />
+    </MapView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
